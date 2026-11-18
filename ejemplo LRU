@@ -1,0 +1,21 @@
+Hacer un ejercicio de Gestión de Memoria con el algoritmo LRU y la siguiente secuencia de páginas
+
+Secuencia: `4, 6, 2, 9, 0, 1, 4, 3, 2, 0`
+
+| Acceso | Marcos (más reciente → menos reciente) | Resultado |
+|---:|:---|:---|
+| 4 | 4 | Fallo |
+| 6 | 6, 4 | Fallo |
+| 2 | 2, 6, 4 | Fallo |
+| 9 | 9, 2, 6, 4 | Fallo |
+| 0 | 0, 9, 2, 6 | Fallo; reemplaza a 4 |
+| 1 | 1, 0, 9, 2 | Fallo; reemplaza a 6 |
+| 4 | 4, 1, 0, 9 | Fallo; reemplaza a 2 |
+| 3 | 3, 4, 1, 0 | Fallo; reemplaza a 9 |
+| 2 | 2, 3, 4, 1 | Fallo; reemplaza a 0 |
+| 0 | 0, 2, 3, 4 | Fallo; reemplaza a 1 |
+
+**Fallos de página: 10**  
+**Aciertos de página: 0**  
+**Tasa de aciertos:** 0 %  
+**Tasa de fallos:** 100 %
