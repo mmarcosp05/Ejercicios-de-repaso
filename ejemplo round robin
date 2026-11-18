@@ -1,0 +1,83 @@
+## Ejercicio: planificación Round Robin
+
+Cuatro procesos llegan al sistema en el instante `0`:
+
+| Proceso | Ráfaga (u.) |
+|---|---:|
+| P1 | 7 |
+| P2 | 4 |
+| P3 | 5 |
+| P4 | 2 |
+
+**Quantum: 3 unidades**
+
+Completa la tabla y determina el orden de ejecución, los tiempos de espera y el tiempo de retorno.
+
+---
+
+### Cola inicial
+
+`P1, P2, P3, P4`
+
+**1. P1 usa 3 unidades**  
+- Orden ejecutado: `P1(0–3)`
+- Cola: `P2, P3, P4, P1`
+- Restante P1: 4
+
+**2. P2 usa 3 unidades**  
+- Orden ejecutado: `P1, P2(3–6)`
+- Cola: `P3, P4, P1, P2`
+- Restante P2: 1
+
+**3. P3 usa 3 unidades**  
+- Orden ejecutado: `P1, P2, P3(6–9)`
+- Cola: `P4, P1, P2, P3`
+- Restante P3: 2
+
+**4. P4 usa 2 unidades y termina**  
+- Orden ejecutado: `P1, P2, P3, P4(9–11)`
+- Cola: `P1, P2, P3`
+- Restante P4: 0
+
+**5. P1 usa 3 unidades**  
+- Orden ejecutado: `P1, P2, P3, P4, P1(11–14)`
+- Cola: `P2, P3, P1`
+- Restante P1: 1
+
+**6. P2 usa 1 unidad y termina**  
+- Orden ejecutado: `P1, P2, P3, P4, P1, P2(14–15)`
+- Cola: `P3, P1`
+- Restante P2: 0
+
+**7. P3 usa 2 unidades y termina**  
+- Orden ejecutado: `P1, P2, P3, P4, P1, P2, P3(15–17)`
+- Cola: `P1`
+- Restante P3: 0
+
+**8. P1 usa 1 unidad y termina**  
+- Orden ejecutado: `P1, P2, P3, P4, P1, P2, P3, P1(17–18)`
+- Cola: vacía
+- Restante P1: 0
+
+### Diagrama de Gantt
+
+```text
+P1 | P2 | P3 | P4 | P1 | P2 | P3 | P1
+0    3    6    9   11   14   15   17   18
+```
+
+### Resultados
+
+| Proceso | Inicio 1.º | Finalización | Tiempo de retorno | Tiempo de espera |
+|---|---:|---:|---:|---:|
+| P1 | 0 | 18 | 18 | 11 |
+| P2 | 3 | 15 | 15 | 11 |
+| P3 | 6 | 17 | 17 | 12 |
+| P4 | 9 | 11 | 11 | 9 |
+
+**Fórmulas:**
+
+- Tiempo de retorno = Finalización − Instante de llegada
+- Tiempo de espera = Tiempo de retorno − Ráfaga
+- Tiempo medio de retorno = `(18 + 15 + 17 + 11) / 4 = 15.25 u.`
+- Tiempo medio de espera = `(11 + 11 + 12 + 9) / 4 = 10.75 u.`
