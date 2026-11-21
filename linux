@@ -1,0 +1,39 @@
+
+Ejercicios en Linux
+
+
+1. Creación de estructura de carpetas
+
+• Crea en tu directorio personal (~) la estructura proyecto/src, proyecto/docs y proyecto/tests en un solo comando.
+• Crea dentro de proyecto/docs un archivo vacío llamado readme.md.
+• Verifica la estructura resultante.
+
+mkdir -p ~/proyecto/{src,docs,tests}
+touch ~/proyecto/docs/readme.md
+ls -la ~/proyecto
+
+2. Permisos básicos con chmod
+
+• Crea una carpeta llamada compartida en tu directorio personal.
+• Asigna permisos 750 (rwxr-x---) a compartida usando notación octal.
+• Cambia el permiso de readme.md para que el grupo tenga escritura (g+w).
+• Comprueba los permisos con ls -la.
+
+mkdir ~/compartida
+chmod 750 ~/compartida
+chmod g+w ~/proyecto/docs/readme.md
+ls -la ~/compartida ~/proyecto/docs
+
+
+Propietario, grupo y permisos especiales
+
+• Crea los usuarios ana y luis y el grupo desarrollo (requiere privilegios de root o sudo).
+• Asigna ana como propietario y desarrollo como grupo de la carpeta proyecto.
+• Configura el bit setgid (2770) sobre proyecto para que los nuevos archivos hereden el grupo desarrollo.
+
+
+sudo groupadd desarrollo
+sudo useradd -m ana
+sudo useradd -m luis
+sudo chown -R ana:desarrollo ~/proyecto
+sudo chmod 2770 ~/proyecto
